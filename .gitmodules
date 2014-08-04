@@ -1,0 +1,3 @@
+[submodule "packer/scripts/puppet"]
+	path = packer/scripts/puppet
+	url = git@github.com:hashicorp/puppet-bootstrap.git
