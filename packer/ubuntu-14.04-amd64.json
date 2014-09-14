@@ -100,14 +100,14 @@
 		"vm_name": "packer-ubuntu-14.04-amd64",
 		"vmx_data": {
 			"cpuid.coresPerSocket": "1",
-			"memsize": "384",
+			"memsize": "2048",
 			"numvcpus": "1"
 		}
 	}
 	],
 		"post-processors": [
 		{
-			"output": "../builds/{{.Provider}}/thinktainer_ubuntu-14.04_salt.box",
+			"output": "../builds/{{.Provider}}/trusty64-mono-fsharp-foundation.box",
 			"type": "vagrant"
 		}
 	],
@@ -127,7 +127,7 @@
 			"type": "shell"},
 		{
 			"type": "salt-masterless",
-			"local_state_tree": "salt"
+			"local_state_tree": "salt/roots"
 		}
 	],
 		"variables": {
