@@ -100,7 +100,12 @@
 		"vm_name": "packer-ubuntu-14.04-amd64",
 		"vmx_data": {
 			"cpuid.coresPerSocket": "1",
-			"memsize": "2048",
+			"memsize": "4096",
+			"numvcpus": "6"
+		},
+		"vmx_data_post": {
+			"memsize": "384",
+			"cpuid.coresPerSocket": "1",
 			"numvcpus": "1"
 		}
 	}
@@ -116,18 +121,25 @@
 			"execute_command": "echo 'vagrant'|{{.Vars}} sudo -S -E bash '{{.Path}}'",
 			"scripts": [
 				"scripts/ubuntu/update.sh",
-			"scripts/common/sshd.sh",
-			"scripts/ubuntu/networking.sh",
-			"scripts/ubuntu/sudoers.sh",
-			"scripts/common/vagrant.sh",
-			"scripts/common/vmtools.sh",
-			"scripts/ubuntu/cleanup.sh",
-			"scripts/common/minimize.sh"
+				"scripts/common/sshd.sh",
+				"scripts/ubuntu/networking.sh",
+				"scripts/ubuntu/sudoers.sh",
+				"scripts/common/vagrant.sh",
+				"scripts/common/vmtools.sh",
+				"scripts/ubuntu/cleanup.sh"
 				],
 			"type": "shell"},
 		{
 			"type": "salt-masterless",
 			"local_state_tree": "salt/roots"
+		},
+		{
+			"execute_command": "echo 'vagrant'|{{.Vars}} sudo -S -E bash '{{.Path}}'",
+			"scripts": [
+				"scripts/ubuntu/cleanup-salt.sh",
+				"scripts/common/minimize.sh"
+				],
+			"type": "shell"
 		}
 	],
 		"variables": {

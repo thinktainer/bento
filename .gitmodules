@@ -2,3 +2,6 @@
 	path = packer/scripts/puppet
 	url = git@github.com:hashicorp/puppet-bootstrap.git
 
+[submodule "packer/salt/roots"]
+	path = packer/salt/roots
+	url = git@github.com:thinktainer/mono-salt
