@@ -41,19 +41,11 @@
 		"ssh_wait_timeout": "10000s",
 		"type": "virtualbox-iso",
 		"vboxmanage": [
-			[
-			"modifyvm",
-		"{{.Name}}",
-		"--memory",
-		"384"
-			],
-		[
-			"modifyvm",
-		"{{.Name}}",
-		"--cpus",
-		"1"
-			]
-			],
+			[ "modifyvm", "{{.Name}}", "--memory", "2048" ],
+			[ "modifyvm", "{{.Name}}", "--cpus", "2" ] ],
+		"vboxmanage_post": [
+			[ "modifyvm", "{{.Name}}", "--memory", "348" ],
+			[ "modifyvm", "{{.Name}}", "--cpus", "1" ]],
 		"virtualbox_version_file": ".vbox_version",
 		"vm_name": "packer-ubuntu-14.04-amd64"
 	},
