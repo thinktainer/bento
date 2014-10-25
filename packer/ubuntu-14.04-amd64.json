@@ -180,10 +180,6 @@
 				],
 			"type": "shell"},
 		{
-			"type": "salt-masterless",
-			"local_state_tree": "salt/roots"
-		},
-		{
 			"execute_command": "echo 'vagrant'|{{.Vars}} sudo -S -E bash '{{.Path}}'",
 			"scripts": [
 				"scripts/ubuntu/cleanup-salt.sh",
