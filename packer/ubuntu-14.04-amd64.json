@@ -162,7 +162,7 @@
 	],
 		"post-processors": [
 		{
-			"output": "../builds/{{.Provider}}/trusty64-mono-fsharp-foundation.box",
+			"output": "../builds/{{.Provider}}/trusty64.box",
 			"type": "vagrant"
 		}
 	],
