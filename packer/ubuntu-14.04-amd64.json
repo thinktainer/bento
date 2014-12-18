@@ -168,25 +168,20 @@
 	],
 		"provisioners": [
 		{
-			"execute_command": "echo 'vagrant'|{{.Vars}} sudo -S -E bash '{{.Path}}'",
-			"scripts": [
-				"scripts/ubuntu/update.sh",
-				"scripts/common/sshd.sh",
-				"scripts/ubuntu/networking.sh",
-				"scripts/ubuntu/sudoers.sh",
-				"scripts/common/vagrant.sh",
-				"scripts/common/vmtools.sh",
-				"scripts/ubuntu/cleanup.sh"
-				],
-			"type": "shell"},
-		{
-			"execute_command": "echo 'vagrant'|{{.Vars}} sudo -S -E bash '{{.Path}}'",
-			"scripts": [
-				"scripts/common/minimize.sh"
-				],
-			"type": "shell"
-		}
-	],
+      "execute_command": "echo 'vagrant' | {{.Vars}} sudo -S -E bash '{{.Path}}'",
+      "scripts": [
+        "scripts/ubuntu/update.sh",
+        "scripts/common/sshd.sh",
+        "scripts/ubuntu/networking.sh",
+        "scripts/ubuntu/sudoers.sh",
+        "scripts/common/vagrant.sh",
+        "scripts/common/vmtools.sh",
+        "scripts/ubuntu/cleanup.sh",
+        "scripts/common/minimize.sh"
+      ],
+      "type": "shell"
+    }
+  ],
 		"variables": {
 			"mirror": "http://www.mirrorservice.org/sites/releases.ubuntu.com/"
 		}

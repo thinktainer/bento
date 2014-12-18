@@ -40,20 +40,12 @@
       "ssh_username": "vagrant",
       "ssh_wait_timeout": "10000s",
       "type": "virtualbox-iso",
-      "vboxmanage": [
-        [
-          "modifyvm",
-          "{{.Name}}",
-          "--memory",
-          "384"
-        ],
-        [
-          "modifyvm",
-          "{{.Name}}",
-          "--cpus",
-          "1"
-        ]
-      ],
+		"vboxmanage": [
+			[ "modifyvm", "{{.Name}}", "--memory", "2048" ],
+			[ "modifyvm", "{{.Name}}", "--cpus", "2" ] ],
+		"vboxmanage_post": [
+			[ "modifyvm", "{{.Name}}", "--memory", "348" ],
+			[ "modifyvm", "{{.Name}}", "--cpus", "1" ]],
       "virtualbox_version_file": ".vbox_version",
       "vm_name": "packer-ubuntu-12.04-amd64"
     },
@@ -98,11 +90,16 @@
       "tools_upload_flavor": "linux",
       "type": "vmware-iso",
       "vm_name": "packer-ubuntu-12.04-amd64",
-      "vmx_data": {
-        "cpuid.coresPerSocket": "1",
-        "memsize": "384",
-        "numvcpus": "1"
-      }
+		"vmx_data": {
+			"cpuid.coresPerSocket": "1",
+			"memsize": "4096",
+			"numvcpus": "6"
+		},
+		"vmx_data_post": {
+			"memsize": "384",
+			"cpuid.coresPerSocket": "1",
+			"numvcpus": "1"
+		}
     },
     {
       "boot_command": [
@@ -165,15 +162,12 @@
   ],
   "post-processors": [
     {
-      "output": "../builds/{{.Provider}}/opscode_ubuntu-12.04_chef-{{user `chef_version`}}.box",
+      "output": "../builds/{{.Provider}}/precise64.box",
       "type": "vagrant"
     }
   ],
   "provisioners": [
     {
-      "environment_vars": [
-        "CHEF_VERSION={{user `chef_version`}}"
-      ],
       "execute_command": "echo 'vagrant' | {{.Vars}} sudo -S -E bash '{{.Path}}'",
       "scripts": [
         "scripts/ubuntu/update.sh",
@@ -182,16 +176,14 @@
         "scripts/ubuntu/sudoers.sh",
         "scripts/common/vagrant.sh",
         "scripts/common/vmtools.sh",
-        "scripts/common/chef.sh",
         "scripts/ubuntu/cleanup.sh",
         "scripts/common/minimize.sh"
       ],
       "type": "shell"
     }
   ],
-  "variables": {
-    "chef_version": "provisionerless",
-    "mirror": "http://releases.ubuntu.com"
-  }
+		"variables": {
+			"mirror": "http://www.mirrorservice.org/sites/releases.ubuntu.com/"
+		}
 }
 
